@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+        <title></title>
+        <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <h1>hello, {{name}}</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            已经上传了：
+            {% for message in messages %}
+              <span style="color:green">{{ message }}</span>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form action="/upfile" enctype="multipart/form-data" method='post'>
+          选择一个文件: <input type="file" name="file"></br>
+          选择一个图片: <input type="file" name="img">
+          <input type="submit">
+        </form>
+        <script src="{{ url_for('static', filename='style.js') }}"></script>
+    </body>
+</html>
